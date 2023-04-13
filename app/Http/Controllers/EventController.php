@@ -102,4 +102,10 @@ class EventController extends Controller
 
         return response()->json(['success' => 'Event created successfully'], 200);
     }
+
+    public function eventsPage()
+    {
+        $events = Event::all();
+        return view('events', ['events' => $events]);
+    }
 }
