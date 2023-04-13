@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,9 +19,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/events', 'App\Http\Controllers\EventController@index');
-Route::get('/events/{id}', 'App\Http\Controllers\EventController@show');
-Route::post('/events', 'App\Http\Controllers\EventController@store');
-Route::put('/events/{id}', 'App\Http\Controllers\EventController@update');
-Route::delete('/events/{id}', 'App\Http\Controllers\EventController@delete');
-
+Route::get('/events', [EventsController::class, 'index']);
+Route::get('/events/{id}', [EventsController::class, 'show']);
+Route::post('/events', [EventsController::class, 'store']);
+Route::put('/events/{id}', [EventsController::class, 'update']);
+Route::delete('/events/{id}', [EventsController::class, 'delete']);
+Route::get('/events/{type}', [EventsController::class, 'eventsFromType']);
+Route::get('/events/today', [EventsController::class, 'eventsToday']);
+Route::get('/events/most-liked', [EventsController::class, 'mostLikedEvents']);
+Route::get('/events/{id}/attendees', [EventsController::class, 'eventAttendees']);
+Route::get('/events/{id}/subscribe', [EventsController::class, 'subscribeToEvent']);
