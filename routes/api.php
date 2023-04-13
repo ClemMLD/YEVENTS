@@ -23,4 +23,6 @@ Route::get('/events', [EventsController::class, 'allEvents']);
 Route::get('/events/{type}', [EventsController::class, 'eventsFromType']);
 Route::get('/events/today', [EventsController::class, 'eventsToday']);
 Route::get('/events/most-liked', [EventsController::class, 'mostLikedEvents']);
+Route::get('/events/{id}/attendees', [EventsController::class, 'eventAttendees']);
+Route::get('/events/{id}/subscribe', [EventsController::class, 'subscribeToEvent']);
 Route::post('/events/create', [EventsController::class, 'createEvent']);
