@@ -18,6 +18,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/detailevent', function () {
-    return view('detailevent');
+Route::get('/events', [EventController::class, 'eventsPage']);
+Route::get('/home', function () {
+    return view('landing_page');
 });
