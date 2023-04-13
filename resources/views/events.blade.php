@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>Event Page</title>
-    <link rel="stylesheet" href="{{ asset('events.css') }}">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -24,24 +23,23 @@
     </script>
 </head>
 
+@include('navbar')
+
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-12">
+            <div class="col-10">
                 <h1>Les événements</h1>
             </div>
         </div>
         <div class="row">
-            <div class="col-12">
+            <div class="col-10">
                 <p>Voici la liste des événements</p>
             </div>
         </div>
         <div class="container-events">
+            <div class="row">
             @foreach ($events as $event)
-                @if ($loop->index % 3 == 0)
-                <br>
-                    <div class="row justify-content-between">
-                @endif
                 <div class="card" style="width: 18rem;">
                     <img src="{{ asset('images/events/' . $event->id . '.jpg') }}" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -50,10 +48,12 @@
                         <a href="#" class="btn btn-primary">Plus de détails</a>
                     </div>
                 </div>
-                @if ($loop->index % 3 == 2)
-        </div>
-        @endif
         @endforeach
+            </div>
+    </div>
+    <br>
+    <div class="row create-event-button">
+            <a href="{{ route('events.store') }}" class="btn btn-primary">Créer un événement</a>
     </div>
 </body>
 
