@@ -15,10 +15,9 @@ use App\Http\Controllers\EventController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/events', [EventController::class, 'eventsPage']);
-Route::get('/', function () {
     return view('landing_page');
-});
+})->name('home');
+
+Route::get('/events', [EventController::class, 'eventsPage'])->name('events');
+Route::get('/create-event', [EventController::class, 'createEventPage'])->name('events.create');
+

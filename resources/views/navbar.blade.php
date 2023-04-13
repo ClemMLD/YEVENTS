@@ -9,7 +9,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Acceuil<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('home') }}">Acceuil<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
@@ -17,18 +17,18 @@
                     Campus
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Aix en provence</a>
-                    <a class="dropdown-item" href="#">Bordeaux</a>
-                    <a class="dropdown-item" href="#">Lille</a>
-                    <a class="dropdown-item" href="#">Lyon</a>
-                    <a class="dropdown-item" href="#">Montpellier</a>
-                    <a class="dropdown-item" href="#">Nantes</a>
-                    <a class="dropdown-item" href="#">Paris</a>
-                    <a class="dropdown-item" href="#">Rennes</a>
-                    <a class="dropdown-item" href="#">Sophia</a>
-                    <a class="dropdown-item" href="#">Toulouse</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'aix-en-provence']) }}">Aix en provence</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'bordeaux']) }}">Bordeaux</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'lille']) }}">Lille</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'lyon']) }}">Lyon</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'montpellier']) }}">Montpellier</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'nantes']) }}">Nantes</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'paris']) }}">Paris</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'rennes']) }}">Rennes</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'sophia']) }}">Sophia</a>
+                    <a class="dropdown-item" href="{{ route('events', ['campus' => 'toulouse']) }}">Toulouse</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Tous les campus</a>
+                    <a class="dropdown-item" href="{{ route('events') }}">Tous les campus</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -37,15 +37,14 @@
                     Types d'évenements
                 </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">Cinema</a>
-                    <a class="dropdown-item" href="#">Restaurant</a>
-                    <a class="dropdown-item" href="#">Sport</a>
-                    <a class="dropdown-item" href="#">Soiree</a>
-                    <a class="dropdown-item" href="#">Concert</a>
-                    <a class="dropdown-item" href="#">Culture</a>
-                    <a class="dropdown-item" href="#">Jeux vidéo</a>
+                    <a class="dropdown-item" href="{{ route('events', ['type' => 'restaurant']) }}">Restaurant</a>
+                    <a class="dropdown-item" href="{{ route('events', ['type' => 'sport']) }}">Sport</a>
+                    <a class="dropdown-item" href="{{ route('events', ['type' => 'soiree']) }}">Soirée</a>
+                    <a class="dropdown-item" href="{{ route('events', ['type' => 'concert']) }}">Concert</a>
+                    <a class="dropdown-item" href="{{ route('events', ['type' => 'culture']) }}">Culture</a>
+                    <a class="dropdown-item" href="{{ route('events', ['type' => 'jeux-videos']) }}">Jeux vidéos</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Autre</a>
+                    <a class="dropdown-item" href="{{ route('events') }}">Tous les types</a>
                 </div>
             </li>
 
