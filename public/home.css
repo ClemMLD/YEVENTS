@@ -55,6 +55,9 @@
     font-family: MontserraBold !important;
 }
 
+.logo{
+    height: 40px;
+}
 #myVideo {
     position: fixed;
     z-index: -1;
