@@ -19,10 +19,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/events', [EventsController::class, 'allEvents']);
+Route::get('/events', [EventsController::class, 'index']);
+Route::get('/events/{id}', [EventsController::class, 'show']);
+Route::post('/events', [EventsController::class, 'store']);
+Route::put('/events/{id}', [EventsController::class, 'update']);
+Route::delete('/events/{id}', [EventsController::class, 'delete']);
 Route::get('/events/{type}', [EventsController::class, 'eventsFromType']);
 Route::get('/events/today', [EventsController::class, 'eventsToday']);
 Route::get('/events/most-liked', [EventsController::class, 'mostLikedEvents']);
 Route::get('/events/{id}/attendees', [EventsController::class, 'eventAttendees']);
 Route::get('/events/{id}/subscribe', [EventsController::class, 'subscribeToEvent']);
-Route::post('/events/create', [EventsController::class, 'createEvent']);
