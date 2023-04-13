@@ -1,0 +1,68 @@
+@font-face {
+    font-family: MontserraBold;
+    src: url(Montserrat-Bold.ttf);
+}
+@font-face {
+    font-family: Montserra;
+    src: url(Montserrat-Medium.ttf);
+}
+#title {
+    font-size: 2em;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+    margin: 0 0 1em 0;
+    font-family: MontserraBold;
+
+}
+* {
+    font-family: Montserrat;
+}
+.navbar{
+    font-size: 24px;
+    background-color: #23b2a4 !important;
+}
+
+.nav-link{
+    color: white !important;
+}
+
+.navbar-brand{
+    font-size: 32px !important;
+    color: white !important;
+}
+
+.btn{
+    border-color:#1d1d1e !important ;
+    color: #1d1d1e !important;
+}
+
+.btn-outline-success:hover{
+    background-color: white !important;
+    color: #1d1d1e !important;
+}
+
+.center-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-top: 18%;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    margin: 0 0 1em 0;
+    font-family: MontserraBold !important;
+}
+
+.logo{
+    height: 40px;
+}
+#myVideo {
+    position: fixed;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }

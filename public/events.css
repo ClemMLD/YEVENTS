@@ -9,6 +9,14 @@ html{
     text-align: center;
 }
 
-.container-events {
-    padding: 0 10% 0 10%;
+.container-events .row {
+    justify-content: space-around;
+}
+
+.container-events .row .card {
+    margin-bottom: 30px;
+}
+
+.create-event-button {
+    justify-content: center;
 }
