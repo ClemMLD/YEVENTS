@@ -43,6 +43,7 @@
                     <a class="dropdown-item" href="{{ route('events', ['type' => 'concert']) }}">Concert</a>
                     <a class="dropdown-item" href="{{ route('events', ['type' => 'culture']) }}">Culture</a>
                     <a class="dropdown-item" href="{{ route('events', ['type' => 'jeux-videos']) }}">Jeux vidéos</a>
+                    <a class="dropdown-item" href="{{ route('events', ['type' => 'autre']) }}">Autre</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ route('events') }}">Tous les types</a>
                 </div>
