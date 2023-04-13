@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\MessageController;
 
 /*
@@ -31,6 +32,11 @@ Route::get('/events/today', [EventController::class, 'eventsToday']);
 Route::get('/events/most-liked', [EventController::class, 'mostLikedEvents']);
 Route::get('/events/{id}/attendees', [EventController::class, 'eventAttendees']);
 Route::get('/events/{id}/subscribe', [EventController::class, 'subscribeToEvent']);
+
+Route::post('/image', [ ImageController::class, 'ImageUploadStore' ]);
+Route::get('/image/{id}', [ ImageController::class, 'getImage' ]);
+Route::delete('/image/{id}', [ ImageController::class, 'deleteImage' ]);
+
 
 Route::get('/messages', [MessageController::class, 'index']);
 Route::get('/messages/{id}', [MessageController::class, 'show']);
