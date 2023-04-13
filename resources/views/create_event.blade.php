@@ -22,6 +22,7 @@
                 <option value="concert">Concert</option>
                 <option value="culture">Culture</option>
                 <option value="jeux vidéos">Jeux vidéos</option>
+                <option value="autre">Autre</option>
             </select>
         </div>
         <div class="form-group">
