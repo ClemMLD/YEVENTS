@@ -2,7 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\EventsController;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,13 +19,13 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/events', [EventsController::class, 'index']);
-Route::get('/events/{id}', [EventsController::class, 'show']);
-Route::post('/events', [EventsController::class, 'store']);
-Route::put('/events/{id}', [EventsController::class, 'update']);
-Route::delete('/events/{id}', [EventsController::class, 'delete']);
-Route::get('/events/{type}', [EventsController::class, 'eventsFromType']);
-Route::get('/events/today', [EventsController::class, 'eventsToday']);
-Route::get('/events/most-liked', [EventsController::class, 'mostLikedEvents']);
-Route::get('/events/{id}/attendees', [EventsController::class, 'eventAttendees']);
-Route::get('/events/{id}/subscribe', [EventsController::class, 'subscribeToEvent']);
+Route::get('/events', [EventController::class, 'index']);
+Route::get('/events/{id}', [EventController::class, 'show']);
+Route::post('/events', [EventController::class, 'store']);
+Route::put('/events/{id}', [EventController::class, 'update']);
+Route::delete('/events/{id}', [EventController::class, 'delete']);
+Route::get('/events/{type}', [EventController::class, 'eventsFromType']);
+Route::get('/events/today', [EventController::class, 'eventsToday']);
+Route::get('/events/most-liked', [EventController::class, 'mostLikedEvents']);
+Route::get('/events/{id}/attendees', [EventController::class, 'eventAttendees']);
+Route::get('/events/{id}/subscribe', [EventController::class, 'subscribeToEvent']);
