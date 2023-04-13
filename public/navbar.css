@@ -17,6 +17,8 @@
 }
 
 .navbar-brand{
+    padding-top: 0 !important;
+    padding-right: 10px !important;
     font-size: 32px !important;
     color: white !important;
 }
@@ -46,4 +48,8 @@
 
 .navbar .logo{
     height: 40px;
+}
+
+.navbar-nav * {
+    padding-right: 10px !important;
 }
