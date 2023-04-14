@@ -10,6 +10,9 @@
 <body>
     <div class="container text-center mt-5">
         <h1>{{ $event->name }}</h1>
+        <div>
+            <h2>{{ $event->date }}<h2>
+        </div>
         <img src="{{ asset('images/events/' . $event->id . '.jpg') }}" class="img-fluid mt-4 event-image"
             alt="Image de l'événement">
         <div class="row mt-4">
