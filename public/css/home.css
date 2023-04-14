@@ -1,11 +1,4 @@
-@font-face {
-    font-family: MontserratBold;
-    src: url(Montserrat-Bold.ttf);
-}
-@font-face {
-    font-family: Montserrat;
-    src: url(Montserrat-Medium.ttf);
-}
+
 #title {
     font-size: 2em;
     font-weight: bold;

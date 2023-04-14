@@ -1,0 +1,22 @@
+@font-face {
+    font-family: MontserratBold;
+    src: url(../fonts/Montserrat-Bold.ttf);
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(../fonts/Montserrat-Medium.ttf);
+}
+
+html{
+    background-color: #ffffff;
+    color: #ffffff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.42857143;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+button, a{
+    border: none !important;
+}

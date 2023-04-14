@@ -1,0 +1,30 @@
+html{
+    background-color: #ffffff;
+    color: #ffffff;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    line-height: 1.42857143;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container-events .row {
+    justify-content: space-around;
+}
+
+.container-events .row .card {
+    margin-bottom: 30px;
+}
+
+.create-event-button {
+    justify-content: center;
+}
+
+#card-body {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+button {
+    border: none !important;
+}

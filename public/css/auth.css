@@ -1,0 +1,12 @@
+.bg-image {
+    background-image: url('https://mdbcdn.b-cdn.net/img/Photos/new-templates/search-box/img4.webp');
+    background-size: cover;
+}
+
+.btn {
+    background-color: #23b2a4 !important;
+}
+
+.text-body {
+    color: white !important;
+}

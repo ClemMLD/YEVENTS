@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -26,14 +27,26 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        User::where('id', $id)->update([
-            'nickname' => $request->nickname,
-            'email' => $request->email,
+        $validation = Validator::make($request->all(), [
+            'nickname' => 'required',
+            'email' => 'required',
+            'password' => 'required|min:6|confirmed',
         ]);
 
         $user = User::where('id', $id)->first();
 
-        return view('profile', ['user' => $user]);
+        if ($validation->fails()) {
+            return view('authentication/account', ['user' => $user, 'error' => 'Informations incorrectes']);
+        }
+
+        User::where('id', $id)->update([
+            'nickname' => $request->nickname,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
+
+
+        return view('authentication/account', ['user' => $user]);
     }
 
     public function delete(Request $request, $id)
@@ -69,11 +82,11 @@ class UserController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if ($user && Hash::check($request->password, $user->password)) {
-            $request->session()->put('user', $user);
+            Auth::attempt($request->only('email', 'password'));
             return redirect('/');
         }
 
-        return "Username or password is not correct";
+        return view('authentication/login', ['error' => 'Informations incorrectes']);
     }
 
     public function logout()
@@ -84,8 +97,22 @@ class UserController extends Controller
 
     public function register(Request $request)
     {
+        $validation = Validator::make($request->all(), [
+            'firstname' => 'required',
+            'lastname' => 'required',
+            'nickname' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+
+        if ($validation->fails()) {
+            return view('authentication/register', ['error' => 'Informations incorrectes']);
+        }
+
         $user = new User;
-        $user->name = $request->name;
+        $user->firstname = $request->firstname;
+        $user->lastname = $request->lastname;
         $user->nickname = $request->nickname;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
@@ -95,9 +122,28 @@ class UserController extends Controller
         return redirect('/');
     }
 
+    public function loginPage()
+    {
+        if (auth()->user()) {
+            return redirect('/');
+        }
+        return view('authentication/login');
+    }
+
+    public function registerPage()
+    {
+        if (auth()->user()) {
+            return redirect('/');
+        }
+        return view('authentication/register');
+    }
+
     public function profilePage()
     {
+        if (!auth()->user()) {
+            return redirect('/login-page');
+        }
         $user = User::where('id', auth()->user()->id)->first();
-        return view('profile', ['user' => $user]);
+        return view('authentication/account', ['user' => $user]);
     }
 }

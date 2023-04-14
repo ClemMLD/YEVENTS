@@ -22,7 +22,6 @@ class EventController extends Controller
             'location' => $request->location,
             'date' => $request->date,
             'likes' => 0,
-            'attendees' => json_encode([]),
         ]);
         $request->image->move(public_path('images/events'), $event->id . '.jpg');
 
@@ -48,7 +47,7 @@ class EventController extends Controller
     public function index()
     {
         $events = Event::orderBy('likes', 'desc')->take(3)->get();
-        return view('landing_page', ['events' => $events]);
+        return view('home/home', ['events' => $events]);
     }
 
     // Delete event
@@ -123,32 +122,37 @@ class EventController extends Controller
     {
         if ($request->type) {
             $events = Event::where('type', $request->type)->get();
-            return view('events', ['events' => $events]);
+            return view('events/events', ['events' => $events]);
         }
         if ($request->campus) {
             $events = Event::where('campus', $request->campus)->get();
-            return view('events', ['events' => $events]);
+            return view('events/events', ['events' => $events]);
         }
         $events = Event::all();
-        return view('events', ['events' => $events]);
+        return view('events/events', ['events' => $events]);
     }
 
     public function createEventPage()
     {
-        return view('create_event');
+        return view('events/create_event');
     }
 
     public function detailEventPage($id = null)
     {
         $event = Event::where('id', $id)->firstOrFail();
-        $attendees = Event::where('events.id', $id)->join('attendees', 'events.id', '=', 'attendees.event_id')->join('users', 'attendees.user_id', '=', 'users.id')->select('users.nickname')->get();
-        return view('detail_event', ['event' => $event, 'attendees' => $attendees]);
+        $attendees = Event::where('events.id', $id)
+            ->join('attendees', 'events.id', '=', 'attendees.event_id')
+            ->join('users', 'attendees.user_id', '=', 'users.id')
+            ->select('users.*')
+            ->get();
+        $likes = Event::where('id', $id)->first()->likes;
+        return view('events/event_details', ['event' => $event, 'attendees' => $attendees, 'likes' => $likes]);
     }
 
     public function likeEvent(Request $request)
     {
         if (Cache::has('like:' . Auth::id() . ':' . $request->event_id)) {
-            return response('Already liked', 200);
+            return response('Already liked', 403);
         }
         Cache::put('like:' . Auth::id() . ':' . $request->event_id, true, 60 * 24 * 7);
         Event::where('id', $request->event_id)->increment('likes');

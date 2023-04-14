@@ -17,10 +17,6 @@ return new class extends Migration
             $table->string('user_id');
             $table->timestamps();
         });
-
-        Schema::table('events', function (Blueprint $table) {
-            $table->dropColumn('attendees');
-        });
     }
 
     /**
@@ -29,8 +25,5 @@ return new class extends Migration
     public function down(): void
     {
         Schema::dropIfExists('attendees');
-        Schema::table('events', function (Blueprint $table) {
-            $table->string('attendees');
-        });
     }
 };

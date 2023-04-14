@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('type');
-            $table->string('description');
+            $table->longText('description');
             $table->string('campus');
             $table->string('location');
             $table->string('date');
-            $table->string('image');
+            $table->unsignedBigInteger('likes')->default(0);
             $table->timestamps();
         });
     }

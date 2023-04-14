@@ -1,10 +1,14 @@
 <!doctype html>
 <html lang="en">
 
-@include('header')
-@include('navbar')
+<head>
+    <title>Events</title>
+    <link rel="stylesheet" href="{{ asset('css/events.css') }}">
+    @include('components/header')
+</head>
 
 <body>
+    @include('components/navbar')
     <div class="container">
         <br>
         <div class="row">
