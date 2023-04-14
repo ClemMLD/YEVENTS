@@ -48,7 +48,20 @@
                     <a class="dropdown-item" href="{{ route('events') }}">Tous les types</a>
                 </div>
             </li>
-
+            @guest
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                </li>
+                @if (Route::has('register'))
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    </li>
+                @endif
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('profile') }}">Mon profil</a>
+                </li>
+            @endguest
         </ul>
         <img src="{{ asset('images/logo.svg') }}" alt="logo" class="logo">
     </div>

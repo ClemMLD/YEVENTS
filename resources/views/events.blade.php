@@ -26,7 +26,7 @@
                     <div class="card-body">
                         <h5 class="card-title">{{ $event->name }}</h5>
                         <p class="card-text">{{ $event->description }}</p>
-                        <a href="#" class="btn btn-primary">Plus de détails</a>
+                        <a href="{{ route('events.show', ['id' => $event->id]) }}" class="btn btn-primary">Voir l'événement</a>
                     </div>
                 </div>
         @endforeach
