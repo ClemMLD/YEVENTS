@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AttendeesController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\UserController;
@@ -15,9 +16,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('landing_page');
-})->name('home');
+Route::get('/', [EventController::class, 'index'])->name('home');
 
 Route::get('/events', [EventController::class, 'eventsPage'])->name('events');
 Route::get('/create-event', [EventController::class, 'createEventPage'])->name('events.create');
@@ -28,3 +27,5 @@ Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+
+Route::post('/events/{id}/subscribe', [AttendeesController::class, 'store'])->name('events.subscribe');

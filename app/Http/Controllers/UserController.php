@@ -26,8 +26,12 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::findOrFail($id);
-        $user->update($request->all());
+        User::where('id', $id)->update([
+            'nickname' => $request->nickname,
+            'email' => $request->email,
+        ]);
+
+        $user = User::where('id', $id)->first();
 
         return view('profile', ['user' => $user]);
     }

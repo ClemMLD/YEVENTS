@@ -31,7 +31,8 @@ Route::get('/events/type/{type}', [EventController::class, 'eventsFromType']);
 Route::get('/events/today', [EventController::class, 'eventsToday']);
 Route::get('/events/most-liked', [EventController::class, 'mostLikedEvents']);
 Route::get('/events/{id}/attendees', [EventController::class, 'eventAttendees']);
-Route::get('/events/{id}/subscribe', [EventController::class, 'subscribeToEvent']);
+Route::get('/events/likes/{id}', [EventController::class, 'eventLikes'])->name('events.likes');
+Route::post('/events/like', [EventController::class, 'likeEvent'])->name('events.like');
 
 Route::post('/image', [ ImageController::class, 'ImageUploadStore' ]);
 Route::get('/image/{id}', [ ImageController::class, 'getImage' ]);

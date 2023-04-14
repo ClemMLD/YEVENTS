@@ -3,6 +3,7 @@
 
 <head>
     <title>Détails de l'événement</title>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 @include('header')
 @include('navbar')
@@ -53,6 +54,15 @@
         </div>
         <br>
         @if (Auth::check())
+            <button class="btn btn-primary" onclick="like()">Like</button>
+            <span id="likes-count">{{ $event->likes }}</span>
+            <button class="btn btn-primary" onclick="subscribe()">S'abonner</button>
+            <div id="subscribers">
+                @foreach ($attendees as $attendee)
+                    <p>{{ $attendee->nickname }}</p>
+                @endforeach
+            </div>
+            <br><br>
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 offset-md-2">
@@ -104,7 +114,6 @@
         @endif
     }
 
-
     function getMessage() {
         setInterval(function() {
             var xhttp = new XMLHttpRequest();
@@ -126,6 +135,53 @@
             xhttp.open("GET", "/api/messages/event/{{ $event->id }}", true);
             xhttp.send();
         }, 1000);
+    }
+
+    function subscribe() {
+        @if (Auth::check())
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var subscribersCount = document.getElementById("subscribers");
+                    subscribersCount.innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "/events/{{ $event->id }}/subscribe", true);
+            xhttp.setRequestHeader("X-CSRF-TOKEN", document.querySelector('meta[name="csrf-token"]').getAttribute('content'));
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("event_id={{ $event->id }}&user_id={{ Auth::user()->id }}");
+        @endif
+    }
+
+    function getLikesCount(callback) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                callback(this.responseText);
+            }
+        };
+        xhttp.open("GET", "/api/events/likes/{{ $event->id }}", true);
+        xhttp.send();
+    }
+
+    function like() {
+        @if (Auth::check())
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    var likesCount = document.getElementById("likes-count");
+                    likesCount.innerHTML = this.responseText;
+                    setTimeout(function() {
+                        getLikesCount(function(responseText) {
+                            likesCount.innerHTML = responseText;
+                        });
+                    }, 3000);
+                }
+            };
+            xhttp.open("POST", "/api/events/like", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("event_id={{ $event->id }}");
+        @endif
     }
 </script>
 

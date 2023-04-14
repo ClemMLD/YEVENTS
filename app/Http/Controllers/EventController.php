@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class EventController extends Controller
 {
@@ -45,7 +47,8 @@ class EventController extends Controller
     // Get all events
     public function index()
     {
-        return Event::all();
+        $events = Event::orderBy('likes', 'desc')->take(3)->get();
+        return view('landing_page', ['events' => $events]);
     }
 
     // Delete event
@@ -87,7 +90,7 @@ class EventController extends Controller
 
     public function subscribeToEvent($id)
     {
-        if (!auth()->user()) {
+        if (Auth::guest()) {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
 
@@ -138,6 +141,23 @@ class EventController extends Controller
     public function detailEventPage($id = null)
     {
         $event = Event::where('id', $id)->firstOrFail();
-        return view('detail_event', ['event' => $event]);
+        $attendees = Event::where('events.id', $id)->join('attendees', 'events.id', '=', 'attendees.event_id')->join('users', 'attendees.user_id', '=', 'users.id')->select('users.nickname')->get();
+        return view('detail_event', ['event' => $event, 'attendees' => $attendees]);
+    }
+
+    public function likeEvent(Request $request)
+    {
+        if (Cache::has('like:' . Auth::id() . ':' . $request->event_id)) {
+            return response('Already liked', 200);
+        }
+        Cache::put('like:' . Auth::id() . ':' . $request->event_id, true, 60 * 24 * 7);
+        Event::where('id', $request->event_id)->increment('likes');
+
+        return response('Liked', 200);
+    }
+
+    public function eventLikes($id)
+    {
+        return Event::where('id', $id)->first()->likes;
     }
 }
