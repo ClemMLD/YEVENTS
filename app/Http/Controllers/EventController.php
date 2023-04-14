@@ -134,4 +134,10 @@ class EventController extends Controller
     {
         return view('create_event');
     }
+
+    public function detailEventPage($id = null)
+    {
+        $event = Event::where('id', $id)->firstOrFail();
+        return view('detail_event', ['event' => $event]);
+    }
 }

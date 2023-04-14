@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -28,7 +29,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $user->update($request->all());
 
-        return $user;
+        return view('profile', ['user' => $user]);
     }
 
     public function delete(Request $request, $id)
@@ -71,9 +72,9 @@ class UserController extends Controller
         return "Username or password is not correct";
     }
 
-    public function logout(Request $request)
+    public function logout()
     {
-        $request->session()->forget('user');
+        Auth::logout();
         return redirect('/');
     }
 
@@ -87,5 +88,11 @@ class UserController extends Controller
 
         $request->session()->put('user', $user);
         return redirect('/');
+    }
+
+    public function profilePage()
+    {
+        $user = User::where('id', auth()->user()->id)->first();
+        return view('profile', ['user' => $user]);
     }
 }
