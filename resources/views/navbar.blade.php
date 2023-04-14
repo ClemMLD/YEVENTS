@@ -9,7 +9,7 @@
         <a class="navbar-brand" href="{{ route('home') }}">Yevents</a>
         <ul class="navbar-nav mr-auto">
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('home') }}">Acceuil<span class="sr-only">(current)</span></a>
+                <a class="nav-link" href="{{ route('home') }}">Accueil<span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"

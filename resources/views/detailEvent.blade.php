@@ -9,9 +9,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="bg-dark">
-        <div class="container text-center mt-5">
+    @include('navbar')
+    <div class="">
+        <div class="container text-center mt-4">
         <h1>Nom de l'événement</h1>
+        <h2>date de l'événement</h2>
         <img src="images/image_event.jpeg" class="img-fluid mt-4" alt="Image de l'événement">
         <div class="row mt-4">
             <div class="col-md-6">
@@ -44,7 +46,7 @@
                 <div class="card">
                     <div class="card-body">
                         <h2>Nom du campus</h2>
-                        <p>Le nom du campus de l'événement...</p>
+                        <p>Le nom du campus...</p>
                     </div>
                 </div>
             </div>
