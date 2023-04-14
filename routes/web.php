@@ -27,5 +27,12 @@ Route::put('/users/{id}', [UserController::class, 'update'])->name('users.update
 Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::get('/register', [UserController::class, 'register'])->name('register');
 Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+Route::get('/authenticate-page', function () {
+    return view('authenticate_page');
+})->name('authenticate_page');
+
+Route::get('/register-page', function () {
+    return view('register_page');
+})->name('register_page');
 
 Route::post('/events/{id}/subscribe', [AttendeesController::class, 'store'])->name('events.subscribe');

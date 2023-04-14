@@ -53,3 +53,7 @@
 .navbar-nav * {
     padding-right: 10px !important;
 }
+
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+    background-color: #23b2a4 !important;
+}
