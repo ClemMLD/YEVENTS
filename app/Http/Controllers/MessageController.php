@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MessageController extends Controller
 {
@@ -45,6 +46,6 @@ class MessageController extends Controller
 
     public function messagesFromEvent($id)
     {
-        return Message::where('event_id', $id)->get();
+        return Message::where('event_id', $id)->join('users', 'messages.user_id', '=', 'users.id')->select('messages.*', 'users.nickname')->get();
     }
 }
