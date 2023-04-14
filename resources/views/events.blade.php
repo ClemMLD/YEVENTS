@@ -20,22 +20,30 @@
         <br>
         <div class="container-events">
             <div class="row">
-            @foreach ($events as $event)
-                <div class="card" style="width: 18rem;">
-                    <img src="{{ asset('images/events/' . $event->id . '.jpg') }}" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $event->name }}</h5>
-                        <p class="card-text">{{ $event->description }}</p>
-                        <a href="{{ route('events.show', ['id' => $event->id]) }}" class="btn btn-primary">Voir l'événement</a>
+                @foreach ($events as $event)
+                    <div class="card" style="width: 18rem;">
+                        <img src="{{ asset('images/events/' . $event->id . '.jpg') }}" class="card-img-top"
+                            alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $event->name }}</h5>
+                            <p class="card-text">{{ $event->description }}</p>
+                            <a href="{{ route('events.show', ['id' => $event->id]) }}" class="btn btn-primary">Voir
+                                l'événement</a>
+                        </div>
                     </div>
-                </div>
-        @endforeach
+                @endforeach
             </div>
-    </div>
-    <br>
-    <div class="row create-event-button">
-            <a href="{{ route('events.create') }}" class="btn btn-primary">Créer un événement</a>
-    </div>
+        </div>
+        <br>
+        @if (Auth::check())
+            <div class="row create-event-button">
+                <a href="{{ route('events.create') }}" class="btn btn-primary">Créer un événement</a>
+            </div>
+        @else
+        <div class="alert alert-warning">
+            Vous devez être connecté pour créer un événement.
+        </div>
+        @endif
 </body>
 
 </html>
