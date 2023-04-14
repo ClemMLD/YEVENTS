@@ -9,7 +9,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
-    <div class="container text-center mt-5">
+    <div class="bg-dark">
+        <div class="container text-center mt-5">
         <h1>Nom de l'événement</h1>
         <img src="images/image_event.jpeg" class="img-fluid mt-4" alt="Image de l'événement">
         <div class="row mt-4">
@@ -30,7 +31,7 @@
                 </div>
             </div>
         </div>
-        <div class="row mt-4">
+        <div class="row mt-4 pb-4">
             <div class="col-md-6">
                 <div class="card">
                     <div class="card-body">
@@ -47,6 +48,7 @@
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </body>
