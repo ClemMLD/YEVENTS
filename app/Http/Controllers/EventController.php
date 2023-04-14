@@ -11,7 +11,20 @@ class EventController extends Controller
     // Create Event
     public function store(Request $request)
     {
-        return Event::create($request->all());
+        // Save the image to the public folder under the path public/images
+        $event = Event::create([
+            'name' => $request->name,
+            'type' => $request->type,
+            'description' => $request->description,
+            'campus' => $request->campus,
+            'location' => $request->location,
+            'date' => $request->date,
+            'likes' => 0,
+            'attendees' => json_encode([]),
+        ]);
+        $request->image->move(public_path('images/events'), $event->id . '.jpg');
+
+        return redirect()->route('events');
     }
 
     // Get single event
@@ -101,5 +114,24 @@ class EventController extends Controller
         ]);
 
         return response()->json(['success' => 'Event created successfully'], 200);
+    }
+
+    public function eventsPage(Request $request)
+    {
+        if ($request->type) {
+            $events = Event::where('type', $request->type)->get();
+            return view('events', ['events' => $events]);
+        }
+        if ($request->campus) {
+            $events = Event::where('campus', $request->campus)->get();
+            return view('events', ['events' => $events]);
+        }
+        $events = Event::all();
+        return view('events', ['events' => $events]);
+    }
+
+    public function createEventPage()
+    {
+        return view('create_event');
     }
 }

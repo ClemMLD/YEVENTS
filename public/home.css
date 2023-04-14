@@ -1,0 +1,38 @@
+@font-face {
+    font-family: MontserratBold;
+    src: url(Montserrat-Bold.ttf);
+}
+@font-face {
+    font-family: Montserrat;
+    src: url(Montserrat-Medium.ttf);
+}
+#title {
+    font-size: 2em;
+    font-weight: bold;
+    color: red;
+    text-align: center;
+    margin: 0 0 1em 0;
+    font-family: MontserratBold;
+}
+
+.center-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-top: 18%;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    margin: 0 0 1em 0;
+    font-family: MontserratBold !important;
+}
+
+#myVideo {
+    position: fixed;
+    z-index: -1;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }

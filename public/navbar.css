@@ -1,0 +1,55 @@
+@font-face {
+    font-family: MontserraBold;
+    src: url(Montserrat-Bold.ttf);
+}
+@font-face {
+    font-family: Montserra;
+    src: url(Montserrat-Medium.ttf);
+}
+
+.navbar{
+    font-size: 24px;
+    background-color: #23b2a4 !important;
+}
+
+.navbar .nav-link{
+    color: white !important;
+}
+
+.navbar-brand{
+    padding-top: 0 !important;
+    padding-right: 10px !important;
+    font-size: 32px !important;
+    color: white !important;
+}
+
+.navbar .btn{
+    border-color:#1d1d1e !important ;
+    color: #1d1d1e !important;
+}
+
+.navbar .btn-outline-success:hover{
+    background-color: white !important;
+    color: #1d1d1e !important;
+}
+
+.navbar .center-title{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    padding-top: 18%;
+    font-size: 2em;
+    font-weight: bold;
+    color: white;
+    margin: 0 0 1em 0;
+    font-family: MontserraBold !important;
+}
+
+.navbar .logo{
+    height: 40px;
+}
+
+.navbar-nav * {
+    padding-right: 10px !important;
+}

@@ -24,7 +24,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('/events', [EventController::class, 'index']);
 Route::get('/events/{id}', [EventController::class, 'show']);
-Route::post('/events', [EventController::class, 'store']);
+Route::post('/events', [EventController::class, 'store'])->name('events.store');
 Route::put('/events/{id}', [EventController::class, 'update']);
 Route::delete('/events/{id}', [EventController::class, 'delete']);
 Route::get('/events/type/{type}', [EventController::class, 'eventsFromType']);
@@ -36,7 +36,6 @@ Route::get('/events/{id}/subscribe', [EventController::class, 'subscribeToEvent'
 Route::post('/image', [ ImageController::class, 'ImageUploadStore' ]);
 Route::get('/image/{id}', [ ImageController::class, 'getImage' ]);
 Route::delete('/image/{id}', [ ImageController::class, 'deleteImage' ]);
-
 
 Route::get('/messages', [MessageController::class, 'index']);
 Route::get('/messages/{id}', [MessageController::class, 'show']);

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EventController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
+    return view('landing_page');
+})->name('home');
+
+Route::get('/events', [EventController::class, 'eventsPage'])->name('events');
+Route::get('/create-event', [EventController::class, 'createEventPage'])->name('events.create');
+
